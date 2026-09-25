@@ -4,7 +4,7 @@ Seeded from `docs/branch-a-notes.md` (Juan-Louw's LinkedIn/career history, pulle
 
 | Priority | Title | Target Keyword | Affiliate Angle | Status |
 |---|---|---|---|---|
-| 1 | SIP Trunking Setup: What Actually Goes Wrong (And How to Fix It) | sip trunking setup guide | VoIP hardware/SIP gateway affiliates | idea |
+| 1 | SIP Trunking Setup: What Actually Goes Wrong (And How to Fix It) | sip trunking setup guide | VoIP hardware/SIP gateway affiliates | needs-review |
 | 2 | Panasonic vs Siemens vs NEC SL1000 PABX: A Tech's Honest Comparison | panasonic pabx vs siemens pabx | PBX hardware + installer service affiliates | idea |
 | 3 | South African VoIP Carriers Compared: What 15 Years of Support Calls Taught Me | best voip provider south africa | VoIP/telecoms B2B SaaS + carrier referral programs | idea |
 | 4 | Mikrotik Router Setup for Small Business: Common Wireless Mistakes | mikrotik router configuration | Mikrotik/wireless hardware affiliates | idea |
