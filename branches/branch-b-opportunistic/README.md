@@ -3,7 +3,7 @@
 Scout scans trends, underserved keywords, and new affiliate programs outside the Authority niche. Each candidate niche becomes a test cluster; winners graduate to mini-sites, losers go to maintenance (never deleted without CEO approval).
 
 ## Status
-`Growing` — no test clusters launched yet.
+`Growing` — no test clusters launched yet. First Scout scan done 2026-09-25 (see `docs/scout-log.md`); 3 candidates logged, all low-confidence pending real keyword data, none approved yet.
 
 ## Structure
 ```
