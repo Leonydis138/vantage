@@ -1,0 +1,29 @@
+name: Deploy to Cloudflare Pages
+
+# Stub — wired up fully in Build Order step 2 (Branch A). Requires
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repo secrets before it can deploy.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build site (stub)
+        run: |
+          echo "TODO: render branches/*/content/*.md (status: ready-to-publish) into static HTML"
+          echo "Output should land in ./public before the Pages deploy step below."
+
+      # Once a real static build exists, uncomment:
+      # - name: Publish to Cloudflare Pages
+      #   uses: cloudflare/pages-action@v1
+      #   with:
+      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #     projectName: vantage
+      #     directory: public

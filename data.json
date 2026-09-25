@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "generated_at": "2026-09-25T00:00:00Z",
+    "schema_version": "1.0",
+    "system_status": "bootstrapping"
+  },
+  "revenue": {
+    "currency": "USD",
+    "week": 0,
+    "month": 0,
+    "all_time": 0,
+    "trend_pct_30d": 0,
+    "by_source": []
+  },
+  "branches": [
+    {
+      "id": "branch_a",
+      "name": "Authority Niche (VoIP / Telecoms / ITSM)",
+      "status": "Active",
+      "quota_per_week": 3,
+      "traffic_30d": 0,
+      "clicks_30d": 0,
+      "conversions_30d": 0,
+      "revenue_30d": 0,
+      "score": 0,
+      "notes": "Seeded by CEO practitioner notes. Backlog not yet populated."
+    },
+    {
+      "id": "branch_b",
+      "name": "Opportunistic Scout",
+      "status": "Growing",
+      "quota_per_week": 2,
+      "traffic_30d": 0,
+      "clicks_30d": 0,
+      "conversions_30d": 0,
+      "revenue_30d": 0,
+      "score": 0,
+      "notes": "No test clusters launched yet."
+    },
+    {
+      "id": "branch_c",
+      "name": "Micro-SaaS (VoIP Calculators)",
+      "status": "Maintenance",
+      "quota_per_week": 1,
+      "traffic_30d": 0,
+      "clicks_30d": 0,
+      "conversions_30d": 0,
+      "revenue_30d": 0,
+      "score": 0,
+      "notes": "Tool not yet built. Worker backend pending."
+    }
+  ],
+  "decision_queue": [
+    {
+      "id": "dq_001",
+      "type": "setup",
+      "title": "Complete human-only setup steps",
+      "detail": "Domain registration, bank account, Paddle/Stripe KYC not yet confirmed complete.",
+      "requires": "ceo_approval",
+      "created_at": "2026-09-25T00:00:00Z"
+    }
+  ],
+  "activity_feed": [
+    {
+      "timestamp": "2026-09-25T00:00:00Z",
+      "agent": "System",
+      "action": "Repository skeleton initialized. Awaiting first Scout and Writer runs."
+    }
+  ],
+  "report": {
+    "last_weekly_summary": null
+  }
+}

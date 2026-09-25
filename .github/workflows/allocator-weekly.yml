@@ -1,0 +1,36 @@
+name: Allocator Weekly Scoring
+
+# Stub — mechanical scaffolding only. Actual scoring logic is added in Build Order
+# step 5 (see docs/build-spec.md). This currently just validates data.json shape
+# so the workflow exists and runs on schedule from day one.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Every Monday 06:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  validate-and-score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate data.json is well-formed
+        run: python3 -c "import json; json.load(open('data.json')); print('data.json OK')"
+
+      - name: Run allocator script (stub)
+        run: |
+          echo "TODO: implement scripts/allocator.py per docs/build-spec.md Allocator Logic section"
+          echo "Formula: score = revenue_growth_30d*0.5 + traffic_growth_30d*0.3 + conversion_rate*0.2"
+
+      # Once scripts/allocator.py exists, uncomment:
+      # - name: Compute scores and update quotas
+      #   run: python3 scripts/allocator.py
+      #
+      # - name: Commit updated data.json
+      #   run: |
+      #     git config user.name "vantage-bot"
+      #     git config user.email "bot@vantage.local"
+      #     git add data.json
+      #     git diff --quiet && git diff --staged --quiet || git commit -m "Weekly allocator run"
+      #     git push

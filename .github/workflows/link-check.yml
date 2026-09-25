@@ -1,0 +1,18 @@
+name: Affiliate Link Health Check
+
+# Stub for Affiliate Ops' weekly link-check duty (see agents/affiliate-ops.md).
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Monday 07:00 UTC, after allocator
+  workflow_dispatch: {}
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check affiliate links (stub)
+        run: |
+          echo "TODO: implement scripts/check_links.py"
+          echo "Scan branches/*/content/*.md for affiliate URLs, verify 200 status, flag redirects/breaks to data.json decision_queue"
