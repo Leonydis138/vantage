@@ -4,18 +4,18 @@ Owner/CEO: Juan-Louw Greyling
 
 Three-branch content + micro-SaaS revenue engine, run mostly by AI agents with the CEO as trigger and approver. Full spec in [`docs/build-spec.md`](docs/build-spec.md).
 
-## Status: Skeleton (Build Order step 1 of 7)
+## Status: Build Order step 6 of 7 in progress
 
 - ✅ Repo structure
 - ✅ Agent prompt docs (`agents/`)
 - ✅ Dashboard shell — Bridge (`dashboard/index.html`)
 - ✅ Stub `data.json`
 - ✅ GitHub Actions stubs
-- ⬜ Branch A backlog/content pipeline
-- ⬜ Branch B Scout scanning + mini-site template
-- ⬜ Branch C micro-SaaS tool + Worker backend + Paddle
-- ⬜ Allocator scoring + ledger automation
-- ⬜ Live dashboard + weekly report wiring
+- ✅ Branch A backlog/content pipeline (8-article backlog, article 1/8 drafted, awaiting CEO fact-check)
+- ✅ Branch B Scout scanning + mini-site template (3 candidate niches logged, none approved yet — `dq_003`–`dq_005`)
+- ✅ Branch C micro-SaaS tool built (free VoIP calculator) — not deployed, Worker/Paddle stubbed
+- ✅ Allocator scoring + weekly GitHub Action wired (`scripts/allocator.py`)
+- 🟨 Live dashboard wiring — Bridge auto-loads `data.json` over http(s) with polling + a source/last-sync indicator; Approve/Reject on the Decision Queue is a **local preview only** and shows an on-screen banner telling the CEO to export and commit before it's real. No auto-write-back to the repo by design — matches the "no agent/dashboard action changes the repo without an explicit human commit" rule. Still blocked on Cloudflare Pages deploy (`dq_001`, needs Cloudflare account) to actually go live on a public URL.
 - ⬜ Final handoff pass
 
 ## Structure

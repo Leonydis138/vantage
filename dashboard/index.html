@@ -155,6 +155,18 @@
   .reject:hover{box-shadow:0 0 12px rgba(255,84,112,.35);}
   .empty-state{color:var(--text-dim); font-size:13px; padding:20px; text-align:center; border:1px dashed var(--panel-border); border-radius:12px;}
 
+  /* SYNC BANNER */
+  .sync-banner{
+    display:none; align-items:center; justify-content:space-between; gap:16px;
+    background:rgba(255,184,77,.08); border:1px solid var(--amber); border-radius:10px;
+    padding:12px 16px; margin-bottom:20px; font-size:13px; color:var(--amber);
+  }
+  .sync-banner.show{display:flex;}
+  .sync-banner .sb-text{flex:1;}
+  .sync-banner code{background:rgba(0,0,0,.35); padding:2px 6px; border-radius:4px; font-size:12px; color:var(--text);}
+  .sync-banner button{border-color:var(--amber); color:var(--amber); font-size:12px; padding:6px 12px; white-space:nowrap;}
+  .source-tag{font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin-left:6px;}
+
   /* ACTIVITY FEED */
   .feed{display:flex; flex-direction:column; gap:0; max-height:420px; overflow-y:auto; padding-right:6px;}
   .feed-item{
@@ -198,6 +210,15 @@
     </div>
   </header>
 
+  <div class="sync-banner" id="syncBanner">
+    <div class="sb-text">
+      <strong>Unsaved decisions.</strong> Approve/Reject only changes what's on screen right now — it does not touch the repo.
+      Click <strong>Export Report</strong>, replace <code>data.json</code> at the repo root with the downloaded file, then commit and push
+      (e.g. <code>git add data.json &amp;&amp; git commit -m "CEO: resolve decision queue" &amp;&amp; git push</code>) so it's live for everyone else.
+    </div>
+    <button onclick="document.getElementById('exportReportBtn').click()">Export now</button>
+  </div>
+
   <section>
     <div class="section-title">Command Summary</div>
     <div class="summary-grid" id="summaryGrid"></div>
@@ -218,11 +239,14 @@
     <div class="feed" id="feedList"></div>
   </section>
 
-  <footer>VANTAGE // BRIDGE v1.0 — reads data.json — last sync: <span id="lastSync">—</span></footer>
+  <footer>VANTAGE // BRIDGE v1.0 — reads data.json — last sync: <span id="lastSync">—</span><span class="source-tag" id="sourceTag"></span></footer>
 </div>
 
 <script>
 let STATE = null;
+let DATA_SOURCE = 'none'; // 'live' | 'local-file' | 'stub'
+let HAS_UNSAVED_CHANGES = false;
+let POLL_TIMER = null;
 
 function fmtMoney(n){
   return '$' + Number(n||0).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
@@ -349,6 +373,7 @@ function resolveItem(id, decision){
     agent: 'CEO',
     action: `${decision === 'approved' ? 'Approved' : 'Rejected'}: "${item.title}" (local only — export data.json to persist)`
   });
+  HAS_UNSAVED_CHANGES = true;
   renderAll(STATE);
 }
 
@@ -374,10 +399,16 @@ function renderAll(data){
   renderBranches(data);
   renderQueue(data);
   renderFeed(data);
-  document.getElementById('lastSync').textContent = new Date().toLocaleString();
+  const genAt = data.meta && data.meta.generated_at ? new Date(data.meta.generated_at) : null;
+  document.getElementById('lastSync').textContent = genAt && !isNaN(genAt) ? genAt.toLocaleString() : new Date().toLocaleString();
+  const sourceLabel = {live:'live from repo', 'local-file':'local file', stub:'stub / no data.json found'}[DATA_SOURCE] || '';
+  document.getElementById('sourceTag').textContent = sourceLabel ? ` · source: ${sourceLabel}` : '';
+  const banner = document.getElementById('syncBanner');
+  banner.classList.toggle('show', HAS_UNSAVED_CHANGES);
 }
 
 function loadStub(){
+  DATA_SOURCE = 'stub';
   renderAll({
     meta:{system_status:'bootstrapping'},
     revenue:{currency:'USD', week:0, month:0, all_time:0, trend_pct_30d:0},
@@ -395,18 +426,31 @@ function loadStub(){
   });
 }
 
-// try to auto-load ../data.json when served over http(s)
-async function tryAutoLoad(){
-  if(location.protocol === 'file:'){ loadStub(); return; }
-  try{
-    const res = await fetch('../data.json', {cache:'no-store'});
-    if(res.ok){ renderAll(await res.json()); return; }
-  }catch(e){}
-  try{
-    const res = await fetch('./data.json', {cache:'no-store'});
-    if(res.ok){ renderAll(await res.json()); return; }
-  }catch(e){}
-  loadStub();
+// try to auto-load data.json when served over http(s) — covers a few common
+// deploy layouts (dashboard as its own dir, dashboard at site root, or an
+// absolute path from the domain root).
+const AUTO_LOAD_PATHS = ['../data.json', './data.json', '/data.json'];
+
+async function tryAutoLoad(isPoll){
+  if(location.protocol === 'file:'){ if(!isPoll) loadStub(); return; }
+  if(isPoll && HAS_UNSAVED_CHANGES) return; // don't clobber unsaved local decisions
+  for(const path of AUTO_LOAD_PATHS){
+    try{
+      const res = await fetch(`${path}?t=${Date.now()}`, {cache:'no-store'});
+      if(res.ok){
+        const json = await res.json();
+        DATA_SOURCE = 'live';
+        renderAll(json);
+        return;
+      }
+    }catch(e){ /* try next path */ }
+  }
+  if(!isPoll) loadStub();
+}
+
+function startPolling(){
+  if(POLL_TIMER) clearInterval(POLL_TIMER);
+  POLL_TIMER = setInterval(() => tryAutoLoad(true), 5 * 60 * 1000); // every 5 min
 }
 
 document.getElementById('fileInput').addEventListener('change', (e) => {
@@ -415,6 +459,8 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
   const reader = new FileReader();
   reader.onload = () => {
     try{
+      DATA_SOURCE = 'local-file';
+      HAS_UNSAVED_CHANGES = false;
       renderAll(JSON.parse(reader.result));
     }catch(err){
       alert('Could not parse that file as JSON: ' + err.message);
@@ -432,9 +478,13 @@ document.getElementById('exportReportBtn').addEventListener('click', () => {
   a.download = 'data.json';
   a.click();
   URL.revokeObjectURL(url);
+  if(HAS_UNSAVED_CHANGES){
+    alert('data.json downloaded. Replace the file at the repo root with this one, then commit and push — that\'s what makes the decision(s) real for every agent and every viewer of this dashboard.');
+  }
 });
 
 tryAutoLoad();
+startPolling();
 </script>
 </body>
 </html>

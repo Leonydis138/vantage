@@ -94,6 +94,11 @@
   ],
   "activity_feed": [
     {
+      "timestamp": "2026-09-27T00:00:00Z",
+      "agent": "Product/Dev",
+      "action": "Bridge dashboard: wired live data.json auto-load (with polling every 5 min + multi-path fallback), added a source/last-sync indicator, and an on-screen banner that reminds the CEO Approve/Reject on the Decision Queue is local-only until exported and committed. No auto-write-back to the repo, by design (Build Order step 6)."
+    },
+    {
       "timestamp": "2026-09-25T04:00:00Z",
       "agent": "Product/Dev",
       "action": "Built Branch C free-tier calculator (VoIP bandwidth, subnet/CIDR, SLA uptime) as a single static page. Worker backend scaffolded as a stub — Pro-tier routes return 501 until Paddle/Stripe KYC (dq_001) and CEO-confirmed feature list. Not yet deployed to Cloudflare Pages."
