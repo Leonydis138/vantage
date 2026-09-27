@@ -8,6 +8,7 @@ The Bridge dashboard reads this file directly (fetched relative to `dashboard/in
 - `generated_at` (ISO 8601 timestamp) — last time this file was regenerated
 - `schema_version` (string)
 - `system_status` — `bootstrapping | live | paused`
+- `_allocator_prev_snapshot` (object, internal) — written by `scripts/allocator.py`. Per-branch `revenue_30d`/`traffic_30d` from the last run, used to compute growth % on the next run. Not read by the dashboard; safe to ignore when reasoning about state manually.
 
 ### `revenue`
 - `currency` (string, e.g. `"USD"`)
