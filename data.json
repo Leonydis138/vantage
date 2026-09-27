@@ -94,6 +94,11 @@
   ],
   "activity_feed": [
     {
+      "timestamp": "2026-09-27T01:00:00Z",
+      "agent": "System",
+      "action": "Build Order step 7 complete: docs/handoff-guide.md rewritten to reflect actual build status, day-to-day run steps, the dashboard export-then-commit flow, and the open Decision Queue items (dq_001-dq_005) still blocking full launch. Skeleton build phase is done; the system now runs on ongoing agent cycles + Decision Queue review."
+    },
+    {
       "timestamp": "2026-09-27T00:00:00Z",
       "agent": "Product/Dev",
       "action": "Bridge dashboard: wired live data.json auto-load (with polling every 5 min + multi-path fallback), added a source/last-sync indicator, and an on-screen banner that reminds the CEO Approve/Reject on the Decision Queue is local-only until exported and committed. No auto-write-back to the repo, by design (Build Order step 6)."
