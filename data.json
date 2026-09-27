@@ -94,6 +94,11 @@
   ],
   "activity_feed": [
     {
+      "timestamp": "2026-09-27T02:00:00Z",
+      "agent": "Product/Dev",
+      "action": "Implemented scripts/check_links.py (weekly affiliate/outbound link health check, flags broken/redirected links to the decision queue, never auto-joins/drops a program) and scripts/build_site.py (renders ready-to-publish content to static HTML in ./public for Pages deploy, skips anything still in draft). Wired both into .github/workflows/link-check.yml and pages-deploy.yml. Verified locally: link checker correctly caught a synthetic broken link and left clean links alone; site builder correctly skipped the still-in-review SIP trunking draft and rendered it only under --all preview mode."
+    },
+    {
       "timestamp": "2026-09-27T01:00:00Z",
       "agent": "System",
       "action": "Build Order step 7 complete: docs/handoff-guide.md rewritten to reflect actual build status, day-to-day run steps, the dashboard export-then-commit flow, and the open Decision Queue items (dq_001-dq_005) still blocking full launch. Skeleton build phase is done; the system now runs on ongoing agent cycles + Decision Queue review."

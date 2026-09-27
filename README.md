@@ -36,7 +36,7 @@ docs/
   data-schema.md        data.json schema reference
   handoff-guide.md       plain-language "how to run" guide
   branch-a-notes.md     CEO's practitioner notes go here (empty placeholder for now)
-scripts/                automation scripts (not yet implemented — see scripts/README.md)
+scripts/                automation scripts — allocator, link checker, site builder (see scripts/README.md)
 .github/workflows/      GitHub Actions stubs (allocator, pages deploy, link check)
 data.json               live state the dashboard reads (revenue, branches, decision queue, activity feed)
 ```

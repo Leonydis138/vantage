@@ -1,6 +1,8 @@
 name: Affiliate Link Health Check
 
-# Stub for Affiliate Ops' weekly link-check duty (see agents/affiliate-ops.md).
+# Affiliate Ops' weekly duty (see agents/affiliate-ops.md). Scans branches/*/content/*.md
+# for outbound links, flags broken/redirected ones as decision_queue entries. Never edits
+# content and never joins/drops a program on its own.
 
 on:
   schedule:
@@ -12,7 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check affiliate links (stub)
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Check affiliate links
+        run: python3 scripts/check_links.py
+      - name: Commit findings (if any)
         run: |
-          echo "TODO: implement scripts/check_links.py"
-          echo "Scan branches/*/content/*.md for affiliate URLs, verify 200 status, flag redirects/breaks to data.json decision_queue"
+          git config user.name "vantage-bot"
+          git config user.email "vantage-bot@users.noreply.github.com"
+          if ! git diff --quiet -- data.json; then
+            git add data.json
+            git commit -m "Affiliate Ops: weekly link check findings"
+            git push
+          else
+            echo "No changes to data.json — all links clean."
+          fi
+
