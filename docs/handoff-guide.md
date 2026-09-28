@@ -19,14 +19,14 @@ docs/data-schema.md     what every field in data.json means
 
 ## Current build status (honest as of 2026-09-27)
 - ✅ Branch A: 8-article backlog, article 1/8 drafted (SIP trunking), **awaiting your fact-check** before it goes through SEO/AEO editing.
-- ✅ Branch B: Scout logged 3 candidate niches, all sitting in the Decision Queue unapproved (`dq_003`–`dq_005`). No cluster has been created — Scout's own read is to fold 2 of these into Branch A rather than open a new niche.
+- ✅ Branch B: Scout logged 3 candidate niches; CEO approved (2026-09-28) folding all 3 into Branch A rather than opening new clusters (`dq_003`–`dq_005`, resolved — see `branches/branch-a-authority/backlog.md` for where each landed).
 - ✅ Branch C: free VoIP calculator (bandwidth/subnet/SLA tools) is built and works locally, but is **not deployed anywhere** yet.
 - ✅ Allocator: `scripts/allocator.py` scores each branch weekly and rebalances quota. Runs automatically via GitHub Actions every Monday, or manually — see below.
 - ✅ Bridge dashboard: auto-loads `data.json` when hosted, polls every 5 minutes, shows where its data came from and when it last synced.
-- ⬜ Nothing is publicly live yet — the domain/Cloudflare/bank/KYC setup (`dq_001`) hasn't been done, so Pages deploy is still a stub and there's no real traffic or revenue data.
+- ⬜ Nothing is publicly live yet — domain is confirmed (**vantage-ars.co.za**) but bank/Paddle KYC/Cloudflare/Search Console setup (`dq_001`) is still pending, so Pages deploy is still a stub and there's no real traffic or revenue data.
 
 ## One-time human setup (do these before real revenue can start)
-1. **Register the domain** (~$10–15/yr) — any registrar, point it at Cloudflare.
+1. **Domain: confirmed as `vantage-ars.co.za`.** Register it if not already done, and point it at Cloudflare once step 2 is set up.
 2. **Cloudflare account** — free — connect the domain, enable Pages + Workers + Web Analytics. Once you have `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, add them as GitHub repo secrets and uncomment the real deploy step in `.github/workflows/pages-deploy.yml`.
 3. **GitHub account** — free — this repo lives here already; Actions run here (2,000 free minutes/month).
 4. **Google Search Console** — free — verify the domain once Pages is live. This is what gives Scout and the Allocator real traffic numbers instead of zeros.
@@ -77,10 +77,10 @@ All of this is tracked as `dq_001` in the Decision Queue until it's done.
 - Run with truly zero attention — you're the trigger and the approver, always.
 
 ## Open items waiting on you right now
-- `dq_001` — human-only setup (domain, bank, Paddle/Stripe KYC, Cloudflare, Search Console) — blocks everything going live and blocks real analytics data.
-- `dq_002` — whether to add a freelance IT/VoIP consulting CTA to Branch A articles.
-- `dq_003`–`dq_005` — three Branch B candidate niches Scout flagged; its own recommendation is to fold two into Branch A instead of opening a new Branch B cluster, but nothing proceeds without your sign-off.
-- The Branch A SIP trunking draft (`branches/branch-a-authority/content/sip-trunking-setup-what-goes-wrong.md`) needs your fact-check before it goes through the SEO/AEO Editor.
+- `dq_001` — domain confirmed as `vantage-ars.co.za`. Still pending: bank account, Paddle/Stripe KYC, Cloudflare account, Google Search Console verification. Blocks everything going live and blocks real analytics data.
+- The Branch A SIP trunking draft (`branches/branch-a-authority/content/sip-trunking-setup-what-goes-wrong.md`) needs your fact-check before it goes through the SEO/AEO Editor and can move to `ready-to-publish`.
+- Affiliate Ops still needs to vet a real affiliate program for the remote-work ITSM tooling angle (folded into Branch A backlog items 5 and 7 per `dq_005`) before any affiliate link is added there.
+- `dq_002`–`dq_005` are resolved (see `decision_queue_resolved` in `data.json`): consulting CTA approved for Branch A only, and all three Branch B candidate niches folded into Branch A rather than opening a new cluster.
 
 ## If something breaks
 - `data.json` must stay valid JSON — if the dashboard shows nothing, run `python3 -c "import json; json.load(open('data.json'))"` to check for a syntax error before anything else.

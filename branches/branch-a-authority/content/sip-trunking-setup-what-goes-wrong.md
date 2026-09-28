@@ -79,3 +79,7 @@ If you're setting up a new trunk, build in the check for all three before go-liv
 {{AFFILIATE:sip_gateway_hardware}}
 
 {{AFFILIATE:voip_carrier_sa}}
+
+---
+
+If this is the kind of thing eating your week, it's also the kind of thing I've spent 15+ years fixing for a living — from carrier-side SIP trunk support at Wavenet to running my own IT infrastructure practice (JLGTS). Happy to take a look at your setup. [Get in touch]({{CONSULTING_CTA_LINK}}).

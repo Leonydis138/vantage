@@ -12,10 +12,10 @@ Three-branch content + micro-SaaS revenue engine, run mostly by AI agents with t
 - ✅ Stub `data.json`
 - ✅ GitHub Actions stubs
 - ✅ Branch A backlog/content pipeline (8-article backlog, article 1/8 drafted, awaiting CEO fact-check)
-- ✅ Branch B Scout scanning + mini-site template (3 candidate niches logged, none approved yet — `dq_003`–`dq_005`)
+- ✅ Branch B Scout scanning + mini-site template (3 candidate niches logged; all 3 CEO-approved 2026-09-28 to fold into Branch A instead of opening new clusters — `dq_003`–`dq_005`, see `branches/branch-a-authority/backlog.md`)
 - ✅ Branch C micro-SaaS tool built (free VoIP calculator) — not deployed, Worker/Paddle stubbed
 - ✅ Allocator scoring + weekly GitHub Action wired (`scripts/allocator.py`)
-- ✅ Live dashboard wiring — Bridge auto-loads `data.json` over http(s) with polling + a source/last-sync indicator; Approve/Reject on the Decision Queue is a **local preview only** and shows an on-screen banner telling the CEO to export and commit before it's real. No auto-write-back to the repo by design — matches the "no agent/dashboard action changes the repo without an explicit human commit" rule. Still blocked on Cloudflare Pages deploy (`dq_001`, needs Cloudflare account) to actually go live on a public URL.
+- ✅ Live dashboard wiring — Bridge auto-loads `data.json` over http(s) with polling + a source/last-sync indicator; Approve/Reject on the Decision Queue is a **local preview only** and shows an on-screen banner telling the CEO to export and commit before it's real. No auto-write-back to the repo by design — matches the "no agent/dashboard action changes the repo without an explicit human commit" rule. Still blocked on Cloudflare Pages deploy to actually go live on a public URL — domain confirmed (**vantage-ars.co.za**), bank/Paddle KYC/Cloudflare/Search Console still pending (`dq_001`).
 - ✅ Handoff guide — [`docs/handoff-guide.md`](docs/handoff-guide.md) rewritten with current build status, day-to-day run steps, the dashboard's export→commit flow, and the open Decision Queue items blocking full launch.
 
 **Skeleton phase complete. What's left is running the agents day to day and clearing the Decision Queue** — see [`docs/handoff-guide.md`](docs/handoff-guide.md).

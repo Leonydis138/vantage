@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-25T00:00:00Z",
+    "generated_at": "2026-09-28T00:00:00Z",
     "schema_version": "1.0",
     "system_status": "bootstrapping"
   },
@@ -23,7 +23,7 @@
       "conversions_30d": 0,
       "revenue_30d": 0,
       "score": 0,
-      "notes": "Practitioner notes pulled from CEO's LinkedIn (15+ yrs VoIP/telecoms/IT, 9+ SA carriers, PBX/CCTV/wireless certs). Backlog seeded with 8 articles. Article 1 of 8 drafted, awaiting CEO fact-check before SEO/AEO pass."
+      "notes": "Practitioner notes pulled from CEO's LinkedIn. Backlog now 9 articles (8 original + 1 folded in from Scout's SMB network security candidate). Article 1/9 (SIP trunking) drafted, includes CEO-approved consulting CTA, still awaiting CEO fact-check before SEO/AEO pass. Domain confirmed: vantage-ars.co.za."
     },
     {
       "id": "branch_b",
@@ -35,7 +35,7 @@
       "conversions_30d": 0,
       "revenue_30d": 0,
       "score": 0,
-      "notes": "No test clusters launched yet."
+      "notes": "No standalone test clusters launched. All 3 candidates from the 2026-09-25 scan were folded into Branch A per CEO decision 2026-09-28 (see branch-a-authority/backlog.md) rather than opened as Branch B clusters."
     },
     {
       "id": "branch_c",
@@ -55,44 +55,17 @@
       "id": "dq_001",
       "type": "setup",
       "title": "Complete human-only setup steps",
-      "detail": "Domain registration, bank account, Paddle/Stripe KYC not yet confirmed complete.",
+      "detail": "Domain confirmed: vantage-ars.co.za. Still pending: bank account, Paddle/Stripe KYC, Cloudflare account (Pages/Workers/Web Analytics), Google Search Console verification. Update this item as each is completed.",
       "requires": "ceo_approval",
       "created_at": "2026-09-25T00:00:00Z"
-    },
-    {
-      "id": "dq_002",
-      "type": "new_opportunity",
-      "title": "Confirm: add freelance IT/VoIP consulting CTA to Branch A content?",
-      "detail": "CEO's LinkedIn shows open-to-work status. Branch A articles could close with a soft consulting CTA, but this needs explicit CEO confirmation before Writer adds it to any drafts.",
-      "requires": "ceo_approval",
-      "created_at": "2026-09-25T01:00:00Z"
-    },
-    {
-      "id": "dq_003",
-      "type": "new_opportunity",
-      "title": "Branch B candidate: SMB Cybersecurity / Network Security cluster",
-      "detail": "Scout flags overlap with CEO's existing networking skillset. Cited: NordLayer affiliate program (recurring commission), HackerDNA cybersecurity affiliate roundup. Confidence: low — no keyword/volume data, Search Console not yet connected. Scout's own read: cheaper to test as a Branch A section first rather than a standalone Branch B cluster.",
-      "requires": "ceo_approval",
-      "created_at": "2026-09-25T03:00:00Z"
-    },
-    {
-      "id": "dq_004",
-      "type": "new_opportunity",
-      "title": "Branch B candidate: Smart Home / SMB Physical Security angle",
-      "detail": "Overlaps with Branch A backlog item 6 (Hikvision CCTV article). Cited: Canary, Frontpoint, FlexOffers affiliate programs. Confidence: low. Scout recommends folding into the existing Branch A article rather than a new cluster.",
-      "requires": "ceo_approval",
-      "created_at": "2026-09-25T03:00:00Z"
-    },
-    {
-      "id": "dq_005",
-      "type": "new_opportunity",
-      "title": "Branch B candidate: Remote-work IT/ITSM tooling cluster",
-      "detail": "Overlaps with Branch A backlog items 5 and 7. No specific affiliate program vetted yet — needs a follow-up Scout pass before this could move to affiliate_program_review. Confidence: low.",
-      "requires": "ceo_approval",
-      "created_at": "2026-09-25T03:00:00Z"
     }
   ],
   "activity_feed": [
+    {
+      "timestamp": "2026-09-28T00:00:00Z",
+      "agent": "CEO",
+      "action": "Cleared the Decision Queue: confirmed domain (vantage-ars.co.za, dq_001 partially resolved -- bank/KYC/Cloudflare/GSC still pending); approved the Branch A consulting CTA (dq_002); approved folding all 3 Branch B Scout candidates into Branch A instead of opening new clusters (dq_003-dq_005)."
+    },
     {
       "timestamp": "2026-09-27T02:00:00Z",
       "agent": "Product/Dev",
@@ -136,5 +109,51 @@
   ],
   "report": {
     "last_weekly_summary": null
-  }
+  },
+  "decision_queue_resolved": [
+    {
+      "id": "dq_002",
+      "type": "new_opportunity",
+      "title": "Confirm: add freelance IT/VoIP consulting CTA to Branch A content?",
+      "detail": "CEO's LinkedIn shows open-to-work status. Branch A articles could close with a soft consulting CTA, but this needs explicit CEO confirmation before Writer adds it to any drafts.",
+      "requires": "ceo_approval",
+      "created_at": "2026-09-25T01:00:00Z",
+      "decision": "approved",
+      "resolution_note": "CEO approved 2026-09-28: add soft consulting CTA to end of every Branch A article. Guidance added to agents/writer.md, applied retroactively to the SIP trunking draft.",
+      "resolved_at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "dq_003",
+      "type": "new_opportunity",
+      "title": "Branch B candidate: SMB Cybersecurity / Network Security cluster",
+      "detail": "Scout flags overlap with CEO's existing networking skillset. Cited: NordLayer affiliate program (recurring commission), HackerDNA cybersecurity affiliate roundup. Confidence: low — no keyword/volume data, Search Console not yet connected. Scout's own read: cheaper to test as a Branch A section first rather than a standalone Branch B cluster.",
+      "requires": "ceo_approval",
+      "created_at": "2026-09-25T03:00:00Z",
+      "decision": "approved_fold_into_branch_a",
+      "resolution_note": "CEO approved 2026-09-28: fold into Branch A as new backlog item 9 (SMB Network Security Basics) instead of opening a Branch B cluster.",
+      "resolved_at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "dq_004",
+      "type": "new_opportunity",
+      "title": "Branch B candidate: Smart Home / SMB Physical Security angle",
+      "detail": "Overlaps with Branch A backlog item 6 (Hikvision CCTV article). Cited: Canary, Frontpoint, FlexOffers affiliate programs. Confidence: low. Scout recommends folding into the existing Branch A article rather than a new cluster.",
+      "requires": "ceo_approval",
+      "created_at": "2026-09-25T03:00:00Z",
+      "decision": "approved_fold_into_branch_a",
+      "resolution_note": "CEO approved 2026-09-28: fold smart-home/physical-security angle into existing Branch A backlog item 6 (Hikvision CCTV article) instead of a new cluster.",
+      "resolved_at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "dq_005",
+      "type": "new_opportunity",
+      "title": "Branch B candidate: Remote-work IT/ITSM tooling cluster",
+      "detail": "Overlaps with Branch A backlog items 5 and 7. No specific affiliate program vetted yet — needs a follow-up Scout pass before this could move to affiliate_program_review. Confidence: low.",
+      "requires": "ceo_approval",
+      "created_at": "2026-09-25T03:00:00Z",
+      "decision": "approved_fold_into_branch_a",
+      "resolution_note": "CEO deferred the choice; folded into existing Branch A backlog items 5 and 7 (SLA structuring, 3rd line support) as a content angle only -- Affiliate Ops still needs to vet a real affiliate program before any tagged link is added for this angle.",
+      "resolved_at": "2026-09-28T00:00:00Z"
+    }
+  ]
 }
