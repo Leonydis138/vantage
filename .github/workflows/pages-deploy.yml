@@ -1,0 +1,35 @@
+name: Deploy to Cloudflare Pages
+
+# Renders every branches/*/content/*.md with frontmatter status: ready-to-publish
+# into ./public via scripts/build_site.py, then deploys it to Cloudflare Pages.
+# The actual Pages deploy step is still commented out below — it needs
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repo secrets first (dq_001,
+# human-only Cloudflare account setup). Uncomment it once those secrets exist.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install build dependencies
+        run: pip install --break-system-packages markdown pyyaml
+
+      - name: Build site
+        run: python3 scripts/build_site.py
+
+      # Once CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID secrets are set, uncomment:
+      # - name: Publish to Cloudflare Pages
+      #   uses: cloudflare/pages-action@v1
+      #   with:
+      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #     projectName: vantage
+      #     directory: public
