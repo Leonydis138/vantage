@@ -21,3 +21,14 @@ npx wrangler secret put OWNER_SETUP_TOKEN
 5. Go to https://vantage-ars.co.za/office/ and create the owner account using that token.
 6. Afterwards remove the token: `npx wrangler secret delete OWNER_SETUP_TOKEN`
 7. The AI staff needs the Workers Paid plan for sign-in hashing (see README). Add real services under Business & services, then press "Run all departments now".
+
+## Deploying from GitHub Actions instead
+
+`.github/workflows/deploy.yml` runs the tests and then deploys on every push to `main`.
+In your GitHub repository go to Settings > Secrets and variables > Actions and add:
+
+- `CLOUDFLARE_API_TOKEN`: create at dash.cloudflare.com > My Profile > API Tokens > "Edit Cloudflare Workers" template.
+- `CLOUDFLARE_ACCOUNT_ID`: shown on the Workers & Pages overview page.
+
+Never commit `data/vantage-ars.json`, `.env`, or any text file containing keys or credentials.
+The owner setup token is set once in Cloudflare (`npx wrangler secret put OWNER_SETUP_TOKEN`), not in GitHub.
