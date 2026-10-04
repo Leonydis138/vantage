@@ -1,0 +1,30 @@
+{
+  "name": "vantage-ars",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Vantage-ARS public services website and founder-controlled business workspace",
+  "author": "Juan-louw Greyling <juanlouw.greyling@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "start": "node src/node.js",
+    "dev:cloudflare": "npx wrangler dev",
+    "deploy:cloudflare": "npx wrangler deploy",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "wrangler": "^4.147.0"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "sharp@0.35.5": true,
+    "esbuild@0.28.1": true,
+    "workerd@1.20261001.1": true
+  },
+  "dependencies": {
+    "@img/sharp-wasm32": "^0.35.5",
+    "sharp": "^0.35.5"
+  }
+}

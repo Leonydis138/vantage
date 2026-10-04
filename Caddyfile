@@ -1,0 +1,5 @@
+vantage-ars.co.za, www.vantage-ars.co.za {
+	@www host www.vantage-ars.co.za
+	redir @www https://vantage-ars.co.za{uri} permanent
+	reverse_proxy app:8080
+}

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a2a">
+  <meta name="description" content="Vantage-ARS founder-controlled business operations workspace.">
+  <title>Vantage-ARS · Office</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div id="auth-root" class="auth-root" hidden></div>
+  <div id="workspace" class="workspace" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="#overview" data-goto="overview" aria-label="Vantage-ARS home">
+        <span class="brand-mark" aria-hidden="true">V</span>
+        <span><strong>VANTAGE-ARS</strong><small>FOUNDER OFFICE</small></span>
+      </a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="overview"><span class="nav-icon">◫</span>Overview</button>
+        <button class="nav-link" data-view="customers"><span class="nav-icon">◎</span>Enquiries & sales<span id="nav-leads" class="nav-count">0</span></button>
+        <button class="nav-link" data-view="work"><span class="nav-icon">▤</span>Work queue<span id="nav-tasks" class="nav-count">0</span></button>
+        <button class="nav-link" data-view="approvals"><span class="nav-icon">◇</span>Founder approvals<span id="nav-approvals" class="nav-count">0</span></button>
+        <button class="nav-link" data-view="messages"><span class="nav-icon">✉</span>Message drafts<span id="nav-messages" class="nav-count">0</span></button>
+        <button class="nav-link" data-view="business"><span class="nav-icon">▧</span>Business & services</button>
+        <button class="nav-link" data-view="departments"><span class="nav-icon">▦</span>Departments & access</button>
+        <button class="nav-link" data-view="governance"><span class="nav-icon">⌁</span>Governance & audit</button>
+        <a class="nav-link" href="/autonomous-office.html"><span class="nav-icon">◈</span>Autonomous office</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="connection-state"><span class="state-dot"></span><span><strong>Local workspace</strong><small>No paid services connected</small></span></div>
+        <div class="owner-mini"><span class="avatar">JG</span><span><strong id="owner-name">Founder</strong><small id="owner-email"></small></span></div>
+        <button id="sign-out" class="sign-out">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow">VANTAGE-ARS / <span id="section-label">OVERVIEW</span></p><h1 id="page-title">Good day</h1></div>
+        <div class="topbar-right"><span class="date-chip" id="today"></span><button id="reload" class="icon-button" aria-label="Refresh workspace" title="Refresh">↻</button></div>
+      </header>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div class="connection-banner"><span class="banner-icon">i</span><p><strong>Workflows are live; AI and external services are not connected.</strong> This workspace records real information and enforces role limits. Message drafts stay in the review queue and are never sent by this app.</p></div>
+
+      <section class="view active" id="view-overview" aria-labelledby="page-title">
+        <div class="welcome-card">
+          <div><div class="overline">THE FOUNDER'S DESK</div><h2>Your business, with clear control.</h2><p>Customer work, department tasks, and every request that needs your decision.</p></div>
+          <div class="welcome-side"><span class="posture-dot"></span><span><strong id="system-posture">Protected</strong><small id="posture-detail">Owner control is active</small></span></div>
+        </div>
+        <div id="metrics" class="metrics-grid"></div>
+        <div class="overview-grid">
+          <article class="card overview-approvals"><div class="card-heading"><div><p class="eyebrow">NEEDS YOUR DECISION</p><h3>Approval inbox</h3></div><button class="text-button" data-goto="approvals">View all <span>→</span></button></div><div id="overview-approvals" class="stack-list"></div></article>
+          <article class="card"><div class="card-heading"><div><p class="eyebrow">CUSTOMER PIPELINE</p><h3>Latest enquiries</h3></div><button class="text-button" data-goto="customers">Open pipeline <span>→</span></button></div><div id="overview-leads" class="stack-list"></div></article>
+          <article class="card overview-tasks"><div class="card-heading"><div><p class="eyebrow">DEPARTMENT WORK</p><h3>Open tasks</h3></div><button class="text-button" data-goto="work">Open queue <span>→</span></button></div><div id="overview-tasks" class="stack-list"></div></article>
+          <article class="card readiness-card"><div class="card-heading"><div><p class="eyebrow">CONNECTED SERVICES</p><h3>Workspace readiness</h3></div><span class="tag tag-neutral">No spend</span></div><div class="readiness-list"><div><span>AI provider</span><b id="ready-ai">Not connected</b></div><div><span>Email & calendar</span><b id="ready-comms">Not connected</b></div><div><span>Payments & accounting</span><b id="ready-finance">Not connected</b></div><div><span>Website enquiry routing</span><b id="ready-website">Not connected</b></div><div><span>Data store</span><b>Local, private file</b></div><div><span>AI staff</span><b id="staff-last-run">Not connected</b></div></div><button id="run-staff" class="secondary-button" type="button" hidden>Run all departments now</button></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-customers">
+        <div class="section-intro"><div><p class="eyebrow">CUSTOMER RELATIONSHIPS</p><h2>Enquiries & sales</h2><p>Marketing can prepare and qualify enquiries. A handoff enters Sales only after you approve it.</p></div><button class="primary-button" id="new-lead">＋ Record enquiry</button></div>
+        <article class="card"><div class="card-heading"><div><h3>Customer pipeline</h3><p class="helper">No messages are sent and no customer status is changed automatically.</p></div><span id="lead-count" class="tag tag-neutral">0 records</span></div><div id="lead-table" class="table-scroll"></div></article>
+        <div class="stage-rail"><div><span class="stage-number">01</span><b>Enquiry</b><small>Reception record</small></div><i>→</i><div><span class="stage-number">02</span><b>Marketing review</b><small>Role-limited work</small></div><i>→</i><div class="stage-owner"><span class="stage-number">03</span><b>Your approval</b><small>Sales handoff gate</small></div><i>→</i><div><span class="stage-number">04</span><b>Sales queue</b><small>Sales may begin</small></div></div>
+      </section>
+
+      <section class="view" id="view-work">
+        <div class="section-intro"><div><p class="eyebrow">OPERATIONS</p><h2>Work queue</h2><p>Record and track real work by department. No tasks are preloaded.</p></div></div>
+        <div class="work-layout">
+          <article class="card task-create-card"><div class="card-heading"><div><p class="eyebrow">ASSIGN WORK</p><h3>New task</h3></div></div>
+            <form id="task-form" class="form-grid">
+              <label class="field full">Task title<input name="title" required minlength="3" maxlength="160" placeholder="What needs to be done?"></label>
+              <label class="field">Department<select name="department" required></select></label>
+              <label class="field">Due date<input name="due_date" type="date"></label>
+              <label class="field full">Details<textarea name="description" maxlength="2000" rows="3" placeholder="Relevant context and expected result"></textarea></label>
+              <button class="primary-button" type="submit">Add to work queue</button>
+            </form>
+          </article>
+          <article class="card task-list-card"><div class="card-heading"><div><p class="eyebrow">LIVE WORK</p><h3>Department tasks</h3></div><div id="task-filters" class="filter-pills"><button class="filter-pill active" data-task-filter="all">All</button><button class="filter-pill" data-task-filter="open">Open</button><button class="filter-pill" data-task-filter="done">Done</button></div></div><div id="task-list" class="task-list"></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-approvals">
+        <div class="section-intro"><div><p class="eyebrow">FOUNDER CONTROL</p><h2>Approval inbox</h2><p>Money, customer commitments, sales outcomes, handoffs, and production changes stop here.</p></div><div class="section-actions"><span class="tag tag-warn">You decide every request</span><button id="new-approval" class="primary-button" type="button">New request</button></div></div>
+        <div class="policy-strip"><span class="policy-icon">◇</span><p><strong>No automatic spending.</strong> Any positive amount requires your approval. Approving a record here only documents authorization; this app cannot move money or trigger an external action.</p></div>
+        <div id="approval-list" class="approval-list"></div>
+      </section>
+
+      <section class="view" id="view-messages">
+        <div class="section-intro"><div><p class="eyebrow">CUSTOMER COMMUNICATIONS</p><h2>Message drafts</h2><p>Review correspondence prepared for a real enquiry. Mark a draft reviewed or request changes; this workspace has no send function.</p></div></div>
+        <div class="access-callout"><div><span class="callout-icon">!</span></div><p><strong>Nothing is sent from this screen.</strong> A review records your decision about the draft only. Email, SMS, and WhatsApp integrations are disconnected.</p></div>
+        <div class="message-layout">
+          <article class="card"><div class="card-heading"><div><p class="eyebrow">PREPARE A REPLY</p><h3>New message draft</h3></div></div>
+            <form id="message-form" class="form-grid">
+              <label class="field full">Enquiry<select name="lead_id" required></select></label>
+              <label class="field">Channel<select name="channel" required><option value="manual">Manual / other</option><option value="email">Email</option><option value="sms">SMS</option><option value="whatsapp">WhatsApp</option></select></label>
+              <label class="field">Subject (email)<input name="subject" maxlength="200"></label>
+              <label class="field full">Draft<textarea name="body" required minlength="1" maxlength="5000" rows="6" placeholder="Write a proposed message using confirmed business details only"></textarea></label>
+              <button class="primary-button" type="submit">Queue for review</button>
+            </form>
+          </article>
+          <article class="card"><div class="card-heading"><div><p class="eyebrow">FOUNDER REVIEW</p><h3>Draft queue</h3></div></div><div id="message-draft-list" class="message-draft-list"></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-business">
+        <div class="section-intro"><div><p class="eyebrow">FOUNDER CONFIGURATION</p><h2>Business & services</h2><p>Keep the business profile and service catalogue aligned with the real services you offer. No sample offers or catalogue prices are preloaded.</p></div></div>
+        <div class="business-layout">
+          <article class="card"><div class="card-heading"><div><p class="eyebrow">BUSINESS PROFILE</p><h3>What the office may describe</h3></div></div>
+            <form id="business-form" class="form-grid">
+              <label class="field">Business name<input name="name" required minlength="2" maxlength="160"></label>
+              <label class="field">Website domain<input name="domain" required maxlength="253" placeholder="example.co.za"></label>
+              <label class="field full">What you sell<textarea name="offering" maxlength="2000" rows="3" placeholder="Describe the VoIP, networking, and IT infrastructure services Vantage-ARS provides"></textarea></label>
+              <label class="field full">Target customers<textarea name="target_customers" maxlength="1000" rows="2"></textarea></label>
+              <label class="field full">Service area<textarea name="service_area" maxlength="500" rows="2" placeholder="For example, worldwide remote delivery; on-site by arrangement"></textarea></label>
+              <p class="helper full">Currency is set to ZAR. This profile helps staff review real enquiries; the workspace does not send automated customer replies.</p>
+              <button class="primary-button" type="submit">Save business profile</button>
+            </form>
+          </article>
+          <article class="card"><div class="card-heading"><div><p class="eyebrow">SERVICE CATALOGUE</p><h3>Services and tasks</h3></div></div>
+            <form id="service-form" class="form-grid service-form">
+              <label class="field full">Service name<input name="title" required minlength="3" maxlength="160"></label>
+              <label class="field full">Details<textarea name="description" maxlength="2000" rows="3"></textarea></label>
+              <label class="field">Price (ZAR)<input name="price" type="number" min="0" step="0.01" placeholder="Leave blank if unset"></label>
+              <label class="field">Catalogue status<select name="status"><option value="draft">Draft</option><option value="available">Available internally</option><option value="paused">Paused</option></select></label>
+              <p class="helper full">“Available internally” lets scoped Marketing and Sales roles view this entry. It does not publish it or create a customer offer.</p>
+              <button class="primary-button" type="submit">Add service</button>
+            </form>
+            <div id="service-list" class="service-list"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-departments">
+        <div class="section-intro"><div><p class="eyebrow">ROLE AUTHORITY</p><h2>Departments & access</h2><p>Each role has a narrow scope. Credentials allow a connected worker to use only its permitted endpoints.</p></div></div>
+        <div class="access-callout"><div><span class="callout-icon">!</span></div><p><strong>A credential does not connect an AI model.</strong> No agents or service providers are connected in this workspace. Keep role credentials private; they grant access to real business records.</p></div>
+        <div class="department-layout"><div id="role-grid" class="role-grid"></div><article class="card credential-card"><div class="card-heading"><div><p class="eyebrow">SCOPED API ACCESS</p><h3>Role credentials</h3></div></div><form id="credential-form" class="credential-form"><label class="field">Issue credential for<select name="role" required></select></label><button class="secondary-button" type="submit">Issue credential</button></form><div id="credential-secret" class="secret-box" hidden></div><div id="credential-list" class="credential-list"></div></article></div>
+      </section>
+
+      <section class="view" id="view-governance">
+        <div class="section-intro"><div><p class="eyebrow">CONTROL & EVIDENCE</p><h2>Governance & audit</h2><p>Every workspace change is recorded in a hash-linked audit log. Decision records are evaluations only; external actions are not executed.</p></div><button id="verify-audit" class="secondary-button">Verify audit chain</button></div>
+        <div id="audit-result" class="audit-result" hidden></div>
+        <article class="card backup-card"><div class="card-heading"><div><p class="eyebrow">LOCAL RECOVERY</p><h3>Workspace backup</h3><p class="helper">Backups contain customer records, the owner password hash, and role credential hashes. Store the downloaded file securely.</p></div></div><div class="backup-actions"><button id="download-backup" class="secondary-button">Download verified backup</button><label class="secondary-button backup-file-label">Restore from backup<input id="restore-backup" type="file" accept="application/json,.json" hidden></label></div><small class="helper">Restore accepts backups from this same owner account and writes a local pre-restore recovery copy first.</small></article>
+        <article class="card governance-card"><div class="card-heading"><div><p class="eyebrow">IMMUTABLE AT RUNTIME</p><h3>Operating constitution</h3></div><span id="constitution-version" class="tag tag-neutral">Version</span></div><p id="constitution-preamble" class="governance-preamble"></p><div id="provisions" class="provision-list"></div></article>
+        <article class="card decisions-card"><div class="card-heading"><div><p class="eyebrow">DECISION RECORDS</p><h3>Recent evaluations</h3></div></div><div id="decision-list" class="stack-list"></div></article>
+          <article class="card audit-card"><div class="card-heading"><div><p class="eyebrow">HASH-LINKED LOG</p><h3>Recent audit activity</h3></div></div><div id="audit-list" class="audit-list"></div></article>
+      </section>
+      <footer class="footer"><span>Vantage-ARS Office · by Juan-louw Greyling</span><span>South Africa · ZAR · <a href="mailto:juanlouw.greyling@gmail.com">juanlouw.greyling@gmail.com</a></span></footer>
+    </main>
+  </div>
+
+  <dialog id="lead-dialog" class="modal">
+    <form id="lead-form" class="modal-form">
+      <div class="modal-heading"><div><p class="eyebrow">CUSTOMER PIPELINE</p><h2>Record an enquiry</h2></div><button class="close-button" type="button" data-close="lead-dialog" aria-label="Close">×</button></div>
+      <p class="helper">Enter contact information received from a real person. At least one contact method is required.</p>
+      <label class="field">Contact name<input name="name" required minlength="2" maxlength="160" autocomplete="name"></label>
+      <div class="two-fields"><label class="field">Email<input name="email" type="email" maxlength="254" autocomplete="email"></label><label class="field">Phone<input name="phone" type="tel" maxlength="40" autocomplete="tel"></label></div>
+      <div class="two-fields"><label class="field">Organization<input name="organization" maxlength="160" autocomplete="organization"></label><label class="field">Enquiry source<input name="source" maxlength="120" placeholder="Where this enquiry came from"></label></div>
+      <div class="modal-actions"><button type="button" class="secondary-button" data-close="lead-dialog">Cancel</button><button class="primary-button" type="submit">Save enquiry</button></div>
+    </form>
+  </dialog>
+  <dialog id="request-dialog" class="modal">
+    <form id="request-form" class="modal-form">
+      <div class="modal-heading"><div><p class="eyebrow">FOUNDER CONTROL</p><h2>New approval request</h2></div><button class="close-button" type="button" data-close="request-dialog" aria-label="Close">×</button></div>
+      <p class="helper">Record a request in the approval inbox. Approving it documents authorization only; nothing is sent, spent, or deployed.</p>
+      <label class="field">Request type<select name="kind" id="request-kind" required></select></label>
+      <label class="field" id="request-lead-field">Lead<select name="lead_id" id="request-lead"></select></label>
+      <label class="field" id="request-amount-field">Proposed amount (ZAR)<input name="amount" id="request-amount" inputmode="decimal" placeholder="e.g. 250.00"></label>
+      <label class="field" id="request-outcome-field">Proposed outcome<select name="proposed_outcome" id="request-outcome"><option value="customer">Became a customer</option><option value="closed_lost">Closed, not proceeding</option></select></label>
+      <label class="field">Summary<input name="summary" required minlength="5" maxlength="240"></label>
+      <label class="field">Reason<textarea name="rationale" required minlength="5" maxlength="2000" rows="4"></textarea></label>
+      <div class="modal-actions"><button type="button" class="secondary-button" data-close="request-dialog">Cancel</button><button class="primary-button" type="submit">Submit request</button></div>
+    </form>
+  </dialog>
+  <dialog id="approval-dialog" class="modal">
+    <form id="approval-form" class="modal-form">
+      <div class="modal-heading"><div><p class="eyebrow">FOUNDER DECISION</p><h2 id="approval-dialog-title">Review request</h2></div><button class="close-button" type="button" data-close="approval-dialog" aria-label="Close">×</button></div>
+      <p id="approval-dialog-summary" class="approval-dialog-copy"></p>
+      <input type="hidden" name="id"><input type="hidden" name="decision">
+      <label class="field">Decision reason<textarea name="rationale" required minlength="5" maxlength="1000" rows="4" placeholder="Record why you approved or rejected this request"></textarea></label>
+      <div class="modal-actions"><button type="button" class="secondary-button" data-close="approval-dialog">Cancel</button><button id="approval-confirm" class="primary-button" type="submit">Confirm decision</button></div>
+    </form>
+  </dialog>
+  <dialog id="message-review-dialog" class="modal">
+    <form id="message-review-form" class="modal-form">
+      <div class="modal-heading"><div><p class="eyebrow">FOUNDER REVIEW</p><h2>Review message draft</h2></div><button class="close-button" type="button" data-close="message-review-dialog" aria-label="Close">×</button></div>
+      <p id="message-review-copy" class="approval-dialog-copy"></p>
+      <input type="hidden" name="id"><input type="hidden" name="status">
+      <label class="field">Review note<textarea name="note" required minlength="5" maxlength="1000" rows="4" placeholder="Record what you reviewed or what should change"></textarea></label>
+      <div class="modal-actions"><button type="button" class="secondary-button" data-close="message-review-dialog">Cancel</button><button id="message-review-confirm" class="primary-button" type="submit">Save review</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
