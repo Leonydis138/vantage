@@ -1,0 +1,39 @@
+name = "vantage-api"
+main = "worker.js"
+account_id = "8501d3eeac693b7ada630058ee5e081a"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+preview_urls = true
+
+[[routes]]
+pattern = "vantage-ars.co.za"
+custom_domain = true
+
+[[routes]]
+pattern = "www.vantage-ars.co.za"
+custom_domain = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/", "/index.html", "/office", "/office/*", "/api/*"]
+
+[vars]
+NODE_ENV = "production"
+TRUST_PROXY = "true"
+CLOUDFLARE_WORKER = "true"
+
+[[durable_objects.bindings]]
+name = "WORKSPACE"
+class_name = "VantageWorkspace"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["VantageWorkspace"]
+
+[ai]
+binding = "AI"
+
+[triggers]
+crons = ["*/15 * * * *"]
