@@ -1,6 +1,6 @@
 # VANTAGE — How To Run (Plain Guide)
 
-*Last updated 2026-09-27, at Build Order step 6/7 complete (dashboard wired). This is the one doc you hand to a future you, a VA, or anyone else who needs to pick this up.*
+*Last updated 2026-10-10. Build Order complete; ongoing content and affiliate review. This is the one doc you hand to a future you, a VA, or anyone else who needs to pick this up.*
 
 ## What this is
 An AI-agent-driven revenue system with three branches (Authority content, Opportunistic Scout niches, Micro-SaaS tools) and an Allocator that reweights weekly quota based on performance. You (CEO) are the trigger and the approver — nothing customer-facing, nothing that spends money, and nothing that joins a program or kills a branch happens without you saying yes in the **Decision Queue**.
@@ -10,15 +10,15 @@ An AI-agent-driven revenue system with three branches (Authority content, Opport
 agents/            one prompt file per agent — point Claude Code at the relevant one when you ask it to "run Scout" etc.
 branches/          the three branches' content, templates, and code
 dashboard/index.html   "Bridge" — the single-file dashboard, open it in any browser
-scripts/           allocator.py (done), check_links.py + build_site.py (still stubs)
+scripts/           allocator.py, check_links.py, build_site.py (implemented)
 data.json          the live state file — Bridge reads this, agents write to it
 .github/workflows/ scheduled/automated jobs (allocator runs weekly on its own)
 docs/build-spec.md      the original full spec — source of truth if anything here seems off
 docs/data-schema.md     what every field in data.json means
 ```
 
-## Current build status (honest as of 2026-09-27)
-- ✅ Branch A: 8-article backlog, article 1/8 drafted (SIP trunking), **awaiting your fact-check** before it goes through SEO/AEO editing.
+## Current build status (honest as of 2026-10-10)
+- ✅ Branch A: 9-article backlog, 2 drafts (SIP trunking and PBX comparison), **awaiting your fact-check** before SEO/AEO editing. The PBX draft avoids unverified first-person failure claims and needs exact-model/local-support confirmation.
 - ✅ Branch B: Scout logged 3 candidate niches; CEO approved (2026-09-28) folding all 3 into Branch A rather than opening new clusters (`dq_003`–`dq_005`, resolved — see `branches/branch-a-authority/backlog.md` for where each landed).
 - ✅ Branch C: free VoIP calculator (bandwidth/subnet/SLA tools) is built and works locally, but is **not deployed anywhere** yet.
 - ✅ Allocator: `scripts/allocator.py` scores each branch weekly and rebalances quota. Runs automatically via GitHub Actions every Monday, or manually — see below.
@@ -78,8 +78,9 @@ All of this is tracked as `dq_001` in the Decision Queue until it's done.
 
 ## Open items waiting on you right now
 - `dq_001` — domain confirmed as `vantage-ars.co.za`. Still pending: bank account, Paddle/Stripe KYC, Cloudflare account, Google Search Console verification. Blocks everything going live and blocks real analytics data.
+- `dq_006`–`dq_009` — Affiliate Ops reviewed primary pages for NordLayer, Freshworks, Canary and Frontpoint. All still pending; none joined. Freshworks is the recommended first application; NordLayer needs exact rates, Canary needs regional checks, and Frontpoint should be deferred until SA eligibility and audience fit are confirmed. See `docs/affiliate-programs.md`.
 - The Branch A SIP trunking draft (`branches/branch-a-authority/content/sip-trunking-setup-what-goes-wrong.md`) needs your fact-check before it goes through the SEO/AEO Editor and can move to `ready-to-publish`.
-- Affiliate Ops still needs to vet a real affiliate program for the remote-work ITSM tooling angle (folded into Branch A backlog items 5 and 7 per `dq_005`) before any affiliate link is added there.
+- Branch A article 2 (Panasonic vs Siemens vs NEC PABX comparison) has been drafted — also `needs-review`, awaiting your fact-check.
 - `dq_002`–`dq_005` are resolved (see `decision_queue_resolved` in `data.json`): consulting CTA approved for Branch A only, and all three Branch B candidate niches folded into Branch A rather than opening a new cluster.
 
 ## If something breaks

@@ -5,7 +5,7 @@ Seeded from `docs/branch-a-notes.md` (Juan-Louw's LinkedIn/career history, pulle
 | Priority | Title | Target Keyword | Affiliate Angle | Status |
 |---|---|---|---|---|
 | 1 | SIP Trunking Setup: What Actually Goes Wrong (And How to Fix It) | sip trunking setup guide | VoIP hardware/SIP gateway affiliates | needs-review |
-| 2 | Panasonic vs Siemens vs NEC SL1000 PABX: A Tech's Honest Comparison | panasonic pabx vs siemens pabx | PBX hardware + installer service affiliates | idea |
+| 2 | Panasonic vs Siemens vs NEC SL1000 PABX: A Tech's Honest Comparison | panasonic pabx vs siemens pabx | PBX hardware + installer service affiliates | needs-review |
 | 3 | South African VoIP Carriers Compared: What 15 Years of Support Calls Taught Me | best voip provider south africa | VoIP/telecoms B2B SaaS + carrier referral programs | idea |
 | 4 | Mikrotik Router Setup for Small Business: Common Wireless Mistakes | mikrotik router configuration | Mikrotik/wireless hardware affiliates | idea |
 | 5 | Running IT for a Small Business: SLA Structuring That Actually Works | it sla template small business | B2B SaaS (ITSM tools, backup, M365 add-ons) | idea |
@@ -22,4 +22,5 @@ Seeded from `docs/branch-a-notes.md` (Juan-Louw's LinkedIn/career history, pulle
 ## Next steps
 - Scout: expand each row with real keyword volume/difficulty once Search Console data is available.
 - Writer: pull specifics from `docs/branch-a-notes.md`, do not invent details beyond it. **Every Branch A article closes with the approved consulting CTA** (see `agents/writer.md` — approved 2026-09-28, `dq_002`).
-- Affiliate Ops: still needs to vet a real program before any content references remote-work ITSM tooling as an affiliate angle (see note on rows 5/7 above).
+- Affiliate Ops: primary Freshworks program reviewed 2026-10-10; `dq_007` pending. Freshservice is the internal-IT/ITSM option; Freshdesk focuses on customer helpdesk. No application or tagged link until CEO approval and vendor acceptance.
+- Writer/CEO: article 2 now drafted without invented failure stories. Confirm exact Panasonic/Siemens models and local NEC SL1000 lifecycle/support before publication.
